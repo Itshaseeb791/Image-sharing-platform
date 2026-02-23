@@ -22,7 +22,7 @@ export function AuthForm({ type }: AuthFormProps) {
     setLoading(true);
 
     try {
-      const endpoint = type === "login" ? "/api/auth/login" : "/api/auth/signup";
+      const endpoint = type === "login" ? "/api/login" : "/api/signup";
 
       const res = await fetch(endpoint, {
         method: "POST",
@@ -40,7 +40,7 @@ export function AuthForm({ type }: AuthFormProps) {
         localStorage.setItem("token", data.token); // save JWT
         router.push("/"); // redirect to home/dashboard
       } else {
-        router.push("/auth/login"); // redirect to login after signup
+        router.push("/login"); // redirect to login after signup
       }
     } catch (err: any) {
       toast.error(err.message);
@@ -90,7 +90,7 @@ export function AuthForm({ type }: AuthFormProps) {
         {type === "login" ? (
           <>
             Don't have an account?{" "}
-            <a href="/auth/signup" className="text-blue-500 font-medium">
+            <a href="/signup" className="text-blue-500 font-medium">
               Sign Up
             </a>
           </>
